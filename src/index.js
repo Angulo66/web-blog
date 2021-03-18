@@ -3,11 +3,44 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter } from 'react-router-dom';
+import { ThemeProvider, createMuiTheme } from '@material-ui/core';
+import { createStore } from 'redux';
+import reducer from './store/reducer';
+import { Provider } from 'react-redux';
+
+//Redux store
+const store = createStore(reducer);
+
+//Application theme
+const theme = createMuiTheme({
+  typography: {
+    body1: {
+      fontSize: 12,
+    }
+  },
+  palette: {
+    primary: {
+      main: '#263238'
+    },
+    secondary: {
+      main: '#fafafa'
+    }
+  },
+});
+
+const app = (
+  <Provider store={store}>
+    <BrowserRouter>
+      <ThemeProvider theme={theme}>
+        <App />
+      </ThemeProvider>
+    </BrowserRouter>
+  </Provider>
+)
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  app,
   document.getElementById('root')
 );
 
