@@ -4,6 +4,7 @@ import FeaturedBlogItem from '../../components/FeaturedBlogItem/FeaturedBlogItem
 import { Grid, Fade } from '@material-ui/core';
 import firebase from "../../firebase";
 import classes from './Blog.css';
+
 class Blog extends Component {
     state = {
         isLoading: false,
@@ -14,6 +15,7 @@ class Blog extends Component {
 
     componentDidMount() {
         this.setState({ isLoading: true });
+        console.log('mounted', this.postsRef)
         this.postsRef.onSnapshot((querySnapshot) => {
             const items = [];
             querySnapshot.forEach((doc) => {
